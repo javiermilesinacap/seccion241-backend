@@ -1,9 +1,14 @@
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 const { Meta } = Card;
 
-const App = (props) => (
+const Producto = (props) =>{
+  const [nombre, setNombre] = useState(props.data.nombre);
+  const [precio,setPrecio] = useState(props.data.precio);
+  const [descripcion,setDescripcion] = useState(props.data.descripcion);
+
+  return (  
   <Card
     style={{
       width: 300,
@@ -22,11 +27,11 @@ const App = (props) => (
   >
     <Meta
       avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-      title={props.data.nombre}
-      description={props.data.descripcion}
+      title={nombre}
+      description={descripcion + " Precio: "+ precio}
     />
-    <div>Precio: {props.data.precio}</div>
   </Card>
 );
+} 
 
-export default App;
+export default Producto;
