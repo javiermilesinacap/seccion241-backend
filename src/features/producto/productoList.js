@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Producto from './producto'
-import {Row, Col} from 'antd'
+import {Row, Col, Drawer} from 'antd'
 import './productoList.css'
 
 const items = [
@@ -12,19 +12,36 @@ const items = [
     { nombre: 'Kem', precio: 1350, descripcion: "Formato: 2500cc | Material: Vidrio | Retornable: Si" }
 ]
 
-const productoList = () => {
+const ProductoList = () => {
+    const [open, setOpen] = useState(false);
+    
+      const showDrawer = () => {
+        setOpen(true);
+      };
+    
+      const onClose = () => {
+        setOpen(false);
+      };
     return (
+        <>
         <Row >
             {
                 items.map(elemento => {
                     return (
                         <Col className='separador'>
-                            <Producto data={elemento} />
+                            <Producto data={elemento} onClick={showDrawer} />
                         </Col>)
                 })
             }
         </Row>
+        
+        <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+        </>
     )
 }
 
-export default productoList;
+export default ProductoList;

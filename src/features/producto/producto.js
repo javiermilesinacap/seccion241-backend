@@ -21,7 +21,7 @@ const Producto = (props) =>{
     }
     actions={[
       <SettingOutlined key="setting" />,
-      <EditOutlined key="edit" />,
+      <EditOutlined key="edit" onClick={props.onClick} />,
       <EllipsisOutlined key="ellipsis" />,
     ]}
   >
