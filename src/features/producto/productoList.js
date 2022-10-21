@@ -20,9 +20,11 @@ const ProductoList = () => {
 
     useEffect(()=>{
       axios.get("https://g9cd7530b8a8613-db20220530152721.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/producto/")
-      .then((datos)=>{
-        setItems(datos.data.items)
+      .then((registros)=>{
+        setItems(registros.data.items)
+       
       })
+      .then(()=>{ console.log(items) })
 
     },[])
       const showDrawer = () => {

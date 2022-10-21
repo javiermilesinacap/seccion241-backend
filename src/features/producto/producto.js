@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 const { Meta } = Card;
 
 const Producto = (props) =>{
-  const [nombre, setNombre] = useState(props.data.nombre);
+  const [nombre, setNombre] = useState(props.data.titulo);
   const [precio,setPrecio] = useState(props.data.precio);
-  const [descripcion,setDescripcion] = useState(props.data.descripcion);
+  const [descripcion,setDescripcion] = useState(props.data.subtitulo);
 
   return (  
   <Card
