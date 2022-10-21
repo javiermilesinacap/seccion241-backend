@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Producto from './producto'
 import {Row, Col, Drawer} from 'antd'
 import './productoList.css'
+import ProductoEdit from './productoEdit'
+import axios from 'axios'
 
-const items = [
+const data = [
     { nombre: 'cocacola', precio: 1350, descripcion: "Formato: 2000cc | Material: Vidrio | Retornable: Si" },
     { nombre: 'fanta', precio: 1220, descripcion: "Formato: 2200cc | Material: Vidrio | Retornable: No" },
     { nombre: 'sprite', precio: 1310, descripcion: "Formato: 2500cc | Material: Vidrio | Retornable: Si" },
@@ -14,7 +16,15 @@ const items = [
 
 const ProductoList = () => {
     const [open, setOpen] = useState(false);
-    
+    const [items,setItems] = useState(data)
+
+    useEffect(()=>{
+      axios.get("https://g9cd7530b8a8613-db20220530152721.adb.sa-santiago-1.oraclecloudapps.com/ords/admin/producto/")
+      .then((datos)=>{
+        setItems(datos.data.items)
+      })
+
+    },[])
       const showDrawer = () => {
         setOpen(true);
       };
@@ -34,12 +44,8 @@ const ProductoList = () => {
                 })
             }
         </Row>
-        
-        <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
+        <ProductoEdit title="Basic Drawer" placement="right" onClose={onClose} open={open} />
+
         </>
     )
 }
